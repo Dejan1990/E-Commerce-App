@@ -38,32 +38,53 @@
                         </div>
                         <!-- widget .// -->
                         <div class="widget-header dropdown">
-                            <a href="#" class="ml-3 icontext" data-toggle="dropdown" data-offset="20,10">
-                                <div class="icon-wrap icon-xs bg2 round text-secondary">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <div class="text-wrap">
-                                    <small>Hello.</small>
-                                    <span>Login <i class="fa fa-caret-down"></i></span>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <form class="px-4 py-3">
-                                    <div class="form-group">
-                                        <label>Email address</label>
-                                        <input type="email" class="form-control" placeholder="email@example.com">
+                            @guest
+                                <a href="#" class="ml-3 icontext" data-toggle="dropdown" data-offset="20,10">
+                                    <div class="icon-wrap icon-xs bg2 round text-secondary">
+                                        <i class="fa fa-user"></i>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" placeholder="Password">
+                                    <div class="text-wrap">
+                                        <small>Hello.</small>
+                                        <span>Login <i class="fa fa-caret-down"></i></span>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Sign in</button>
-                                </form>
-                                <hr class="dropdown-divider">
-                                <a class="dropdown-item" href="#">Have account? Sign up</a>
-                                <a class="dropdown-item" href="#">Forgot password?</a>
-                            </div>
-                            <!--  dropdown-menu .// -->
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <form class="px-4 py-3">
+                                        <div class="form-group">
+                                            <label>Email address</label>
+                                            <input type="email" class="form-control" placeholder="email@example.com">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" placeholder="Password">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                    </form>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item" href="/register">Don't have an account? Sign up</a>
+                                    <a class="dropdown-item" href="#">Forgot password?</a>
+                                </div>
+                                <!--  dropdown-menu .// -->
+                            @endguest
+                            @auth
+                                <a href="#" class="ml-3 icontext" data-toggle="dropdown" data-offset="20,10">
+                                    <div class="icon-wrap icon-xs bg2 round text-secondary">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div class="text-wrap">
+                                        <small>Hello.</small>
+                                        <span>{{ auth()->user()->full_name }} <i class="fa fa-caret-down"></i></span>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out fa-lg"></i> Logout
+                                    </a>
+                                    <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            @endauth
                         </div>
                         <!-- widget  dropdown.// -->
                     </div>
