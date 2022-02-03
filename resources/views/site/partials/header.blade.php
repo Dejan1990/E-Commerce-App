@@ -31,62 +31,56 @@
                                     <i class="fa fa-shopping-cart"></i>
                                 </div>
                                 <div class="text-wrap">
-                                    <small>Basket</small>
-                                    <span>3 items</span>
+                                    <small>3 items</small>
                                 </div>
                             </a>
                         </div>
                         <!-- widget .// -->
-                        <div class="widget-header dropdown">
-                            @guest
-                                <a href="#" class="ml-3 icontext" data-toggle="dropdown" data-offset="20,10">
-                                    <div class="icon-wrap icon-xs bg2 round text-secondary">
+                        @guest
+                            <div class="widget-header">
+                                <a href="/login" class="ml-3 icontext">
+                                    <div class="icon-wrap icon-xs bg-primary round text-white">
                                         <i class="fa fa-user"></i>
                                     </div>
                                     <div class="text-wrap">
-                                        <small>Hello.</small>
-                                        <span>Login <i class="fa fa-caret-down"></i></span>
+                                        <span>Login</span>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <form class="px-4 py-3">
-                                        <div class="form-group">
-                                            <label>Email address</label>
-                                            <input type="email" class="form-control" placeholder="email@example.com">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" class="form-control" placeholder="Password">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Sign in</button>
-                                    </form>
-                                    <hr class="dropdown-divider">
-                                    <a class="dropdown-item" href="/register">Don't have an account? Sign up</a>
-                                    <a class="dropdown-item" href="#">Forgot password?</a>
-                                </div>
-                                <!--  dropdown-menu .// -->
-                            @endguest
-                            @auth
-                                <a href="#" class="ml-3 icontext" data-toggle="dropdown" data-offset="20,10">
-                                    <div class="icon-wrap icon-xs bg2 round text-secondary">
+                            </div>
+                            <div class="widget-header">
+                                <a href="/register" class="ml-3 icontext">
+                                    <div class="icon-wrap icon-xs bg-success round text-white">
                                         <i class="fa fa-user"></i>
                                     </div>
                                     <div class="text-wrap">
-                                        <small>Hello.</small>
-                                        <span>{{ auth()->user()->full_name }} <i class="fa fa-caret-down"></i></span>
+                                        <span>Register</span>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out fa-lg"></i> Logout
+                            </div>
+                        @else
+                            <ul class="navbar-nav ml-auto">                               
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ auth()->user()->full_name }} <span class="caret"></span>
                                     </a>
-                                    <form action="{{ route('logout') }}" id="logout-form" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            @endauth
-                        </div>
-                        <!-- widget  dropdown.// -->
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Orders</a>
+                                        <a 
+                                            href="{{ route('logout') }}" 
+                                            class="dropdown-item" 
+                                            onclick="event.preventDefault(); 
+                                                document.getElementById('logout-form').submit();"
+                                        >
+                                            Logout
+                                        </a>
+                                        <form action="{{ route('logout') }}" id="logout-form" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        @endguest
+                        <!-- widget.// -->
                     </div>
                     <!-- widgets-wrap.// -->
                 </div>

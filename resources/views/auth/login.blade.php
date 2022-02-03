@@ -14,7 +14,7 @@
             <div class="col-md-6 mx-auto">
                 <div class="card">
                     <header class="card-header">
-                        <h4 class="card-title mt-2">Sign in</h4>
+                        <h4 class="card-title mt-2 px-4">Sign in</h4>
                     </header>
                     <article class="card-body">
                         <form action="/login" method="POST" role="form">
@@ -39,23 +39,17 @@
                                 @enderror
                             </div>
                             <!-- form-group end.// -->
-                            <div class="form-group row mr-auto">
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
-                                        </label>
-                                    </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label for="remember" class="form-check-label">Remember Me</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block"> Sign in </button>
                             </div>
                             <!-- form-group// -->
-                            
                         </form>
-                        <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
                     </article>
                     <!-- card-body end .// -->
                     <div class="border-top card-body text-center">Don't have an account? <a href="/register">Sign Up</a></div>
