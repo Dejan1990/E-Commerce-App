@@ -7,5 +7,5 @@ Route::get('/', function () {
 });
 
 Route::view('/admin', 'admin.dashboard.index')->middleware(['admin']);
-Route::view('/login', 'auth.login')->name('login')->middleware(['guest']);
-Route::view('/register', 'auth.register')->name('register')->middleware(['guest']);
+Route::view('/login', 'auth.login')->middleware(['guest']);
+Route::view('/register', 'auth.register')->middleware(['guest']);
