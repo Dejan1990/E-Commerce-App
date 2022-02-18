@@ -64,6 +64,9 @@
                                         {{ auth()->user()->full_name }} <span class="caret"></span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        @if (auth()->user()->is_admin)
+                                            <a class="dropdown-item" href="/admin">Admin Dashboard</a>
+                                        @endif
                                         <a class="dropdown-item" href="#">Orders</a>
                                         <a 
                                             href="{{ route('logout') }}" 

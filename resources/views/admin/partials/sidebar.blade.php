@@ -8,7 +8,7 @@
     </div>
     <ul class="app-menu">
         <li>
-            <a class="app-menu__item active" href="#">
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                 <i class="app-menu__icon fa fa-dashboard"></i>
                 <span class="app-menu__label">Dashboard</span>
             </a>
@@ -38,7 +38,7 @@
             </ul>
         </li>
         <li>
-            <a class="app-menu__item" href="#">
+            <a class="app-menu__item {{ Route::currentRouteName() == 'settings.index' ? 'active' : '' }}" href="{{ route('settings.index') }}">
                 <i class="app-menu__icon fa fa-cogs"></i>
                 <span class="app-menu__label">Settings</span>
             </a>
