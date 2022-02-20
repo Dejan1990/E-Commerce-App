@@ -1,6 +1,6 @@
 @extends('admin.app')
 
-@section('title', $pageTitle)
+@section('title') {{ $pageTitle }} @endsection
 
 @section('content')
     <div class="app-title">
@@ -11,6 +11,13 @@
         </div>
     </div>
 
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button class="close" type="button" data-dismiss="alert">x</button>
+            <strong>{{ session('success') }}</strong>
+        </div>
+    @endif
+    
     <div class="row user">
         <div class="col-md-3">
             <div class="tile p-0">
@@ -55,7 +62,7 @@
                 </div>
                 <div class="tab-pane fade" id="payments">
                     @include('admin.settings.includes.payments')
-                </div>    
+                </div>
             </div>
         </div>
     </div>

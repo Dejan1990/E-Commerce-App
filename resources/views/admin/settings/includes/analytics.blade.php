@@ -1,5 +1,5 @@
 <div class="tile">
-    <form action="#" method="POST" role="form">
+    <form action="{{ route('admin.settings.update') }}" method="POST" role="form">
         @csrf
         <h3 class="tile-title">Analytics</h3>
         <hr>
@@ -12,7 +12,7 @@
                     placeholder="Enter google analytics code"
                     id="google_analytics"
                     name="google_analytics"
-                >google_analytics</textarea>
+                >{!! Config::get('settings.google_analytics') !!}</textarea>
             </div>
             <div class="form-group">
                 <label class="control-label" for="facebook_pixels">Facebook Pixel Code</label>
@@ -22,7 +22,7 @@
                     placeholder="Enter facebook pixel code"
                     id="facebook_pixels"
                     name="facebook_pixels"
-                >facebook_pixels</textarea>
+                >{{ Config::get('settings.facebook_pixels') }}</textarea>
             </div>
         </div>
         <div class="tile-footer">

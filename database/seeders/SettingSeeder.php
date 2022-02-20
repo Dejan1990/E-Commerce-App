@@ -14,23 +14,21 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        foreach($this->settings as $index => $setting) {
-
+        foreach ($this->settings as $index => $setting)
+        {
             $result = Setting::create($setting);
-
-            if(!$result) {
-                $this->command->info('Insert failed at record $index');
+            if (!$result) {
+                $this->command->info("Insert failed at record $index.");
                 return;
             }
         }
-
-        $this->command->info('Inserted '.count($this->settings).' records');
+        $this->command->info('Inserted '.count($this->settings). ' records');
     }
 
     protected $settings = [
         [
             'key'                       =>  'site_name',
-            'value'                     =>  'E-Commerce App',
+            'value'                     =>  'E-Commerce Application',
         ],
         [
             'key'                       =>  'site_title',
@@ -38,15 +36,15 @@ class SettingSeeder extends Seeder
         ],
         [
             'key'                       =>  'default_email_address',
-            'value'                     =>  'admin@mail.com',
+            'value'                     =>  'admin@admin.com',
         ],
         [
             'key'                       =>  'currency_code',
-            'value'                     =>  'USD',
+            'value'                     =>  'GBP',
         ],
         [
             'key'                       =>  'currency_symbol',
-            'value'                     =>  '$',
+            'value'                     =>  '£',
         ],
         [
             'key'                       =>  'site_logo',
@@ -54,7 +52,7 @@ class SettingSeeder extends Seeder
         ],
         [
             'key'                       =>  'site_favicon',
-            'value'                     =>  '/frontend/images/favicon-32x32.png',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'footer_copyright_text',
