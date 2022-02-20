@@ -14,3 +14,4 @@ Route::view('/login', 'auth.login')->middleware(['guest']);
 Route::view('/register', 'auth.register')->middleware(['guest']);
 
 
+
