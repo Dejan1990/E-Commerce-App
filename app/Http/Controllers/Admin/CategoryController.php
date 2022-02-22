@@ -15,7 +15,7 @@ class CategoryController extends BaseController
         $this->setPagetitle('Categories', 'List of all categories');
 
         return view('admin.categories.index', [
-            'categories' => Category::all()
+            'categories' => Category::with('parent')->get()
         ]);
     }
 
@@ -74,6 +74,16 @@ class CategoryController extends BaseController
 
     public function destroy(Category $category)
     {
+        /*if ($category->children) {
+            $category->children()->delete();
+        }*/
+
+        if ($category->children) {
+            foreach ($category->children as $child) {
+                $child->update(['parent_id' => 1]);
+            }
+        }
+
         $category->delete();
 
         return redirect()->route('admin.categories.index')
