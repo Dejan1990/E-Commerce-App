@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends BaseController
 {
@@ -82,6 +83,10 @@ class CategoryController extends BaseController
             foreach ($category->children as $child) {
                 $child->update(['parent_id' => 1]);
             }
+        }
+
+        if (Storage::exists($category->image)) {
+            Storage::delete($category->image);
         }
 
         $category->delete();

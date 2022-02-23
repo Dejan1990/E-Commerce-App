@@ -104,4 +104,21 @@ class CategoryTest extends TestCase
         $this->assertDatabaseCount('categories', 0);
         //$this->assertEquals(0, Category::count());
     }
+
+    /** @test */
+    public function deleting_a_parent_category_works_properly()
+    {
+        $user = User::factory()->admin()->create();
+
+        $rootCategory = Category::factory()->create();
+        $categoryParent = Category::factory()->create();
+        $childCategory = Category::factory()->create(['name' => 'child category', 'parent_id' => 2]);
+
+        $this->actingAs($user)->delete(route('admin.categories.delete', $categoryParent));
+
+        $this->assertDatabaseHas('categories', [
+            'name' => 'child category',
+            'parent_id' => 1,
+        ]);
+    }
 }
