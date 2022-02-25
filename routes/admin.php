@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SettingController;
@@ -20,5 +21,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         Route::get('/categories/{category:slug}/edit', 'edit')->name('admin.categories.edit');
         Route::put('/categories/{category}/update', 'update')->name('admin.categories.update');
         Route::delete('/categories/{category}/delete', 'destroy')->name('admin.categories.delete');
+    });
+
+    Route::controller(AttributeController::class)->group(function () {
+        Route::get('/attributes', 'index')->name('admin.attributes.index');
+        Route::get('/attributes/create', 'create')->name('admin.attributes.create');
+        Route::post('/attributes/create', 'store')->name('admin.attributes.store');
+        Route::get('/attributes/{attribute}/edit', 'edit')->name('admin.attributes.edit');
+        Route::put('/attributes/{attribute}/update', 'update')->name('admin.attributes.update');
+        Route::delete('/attributes/{attribute}/delete', 'destroy')->name('admin.attributes.delete');
     });
 });
