@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryStoreRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class CategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:3'],
+            'name' => ['required', 'string', 'min:3', Rule::unique('categories')->ignore($this->category)],
             'description' => ['nullable', 'min:3'],
             'parent_id' => ['required', 'not_in:0'],
             'image' => ['mimes:jpg,jpeg,png', 'max:2048']
