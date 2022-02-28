@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AttributeController;
-use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\AttributeValueController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
 
@@ -30,5 +31,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         Route::get('/attributes/{attribute}/edit', 'edit')->name('admin.attributes.edit');
         Route::put('/attributes/{attribute}/update', 'update')->name('admin.attributes.update');
         Route::delete('/attributes/{attribute}/delete', 'destroy')->name('admin.attributes.delete');
+    });
+
+    Route::controller(AttributeValueController::class)->group(function () {
+        Route::get('/attributes/{attribute}/get-values', 'getValues');
+        Route::post('/attributes/{attribute}/add-value', 'addValue');
+        Route::put('/attributes/{attribute}/update-value', 'updateValue');
+        Route::post('/attributes/{attribute}/delete-value', 'deleteValue');
     });
 });

@@ -15,6 +15,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="#general" data-toggle="tab">General</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#values" data-toggle="tab">Attribute Values</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -129,7 +132,13 @@
                         </form>
                     </div>
                 </div>
+                <div class="tab-pane" id="values">
+                    <attribute-values :attributeid="{{ $attribute->id }}"></attribute-values>
+                </div>
             </div>
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script src="{{ asset('/js/app.js') }}"></script>
+@endpush
