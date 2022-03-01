@@ -16,15 +16,17 @@ class CategoryTest extends TestCase
     public function create_category_form_validation_work()
     {
         $user = User::factory()->admin()->create();
-        $response = $this->actingAs($user)->post(route('admin.categories.store'), [
-            'name' => '',
-            'parent_id' => null,
-            'description' => 'lo'
+
+        $response = $this->actingAs($user)
+            ->post(route('admin.categories.store'), [
+                'name' => '',
+                'parent_id' => 0,
+                'description' => 'lo'
         ]);
 
         $response->assertSessionHasErrors([
             'name' => 'The name field is required.',
-            'parent_id',
+            'parent_id' => 'The selected parent id is invalid.',
             'description' => 'The description must be at least 3 characters.'
         ]);
     }
@@ -34,10 +36,11 @@ class CategoryTest extends TestCase
     {
         $user = User::factory()->admin()->create();
 
-        $response = $this->actingAs($user)->post(route('admin.categories.store'), [
-            'name' => 'First Category',
-            'parent_id' => 1,
-            'description' => 'First description'
+        $response = $this->actingAs($user)
+            ->post(route('admin.categories.store'), [
+                'name' => 'First Category',
+                'parent_id' => 1,
+                'description' => 'First description'
         ]);
 
         $response->assertRedirect(route('admin.categories.index'));
@@ -57,10 +60,11 @@ class CategoryTest extends TestCase
         $category = Category::factory()->create();
         $user = User::factory()->admin()->create();
 
-        $response = $this->actingAs($user)->put(route('admin.categories.update', $category), [
-            'name' => '',
-            'parent_id' => null,
-            'description' => 'gt'
+        $response = $this->actingAs($user)
+            ->put(route('admin.categories.update', $category), [
+                'name' => '',
+                'parent_id' => null,
+                'description' => 'gt'
         ]);
 
         $response->assertSessionHasErrors([
@@ -76,9 +80,10 @@ class CategoryTest extends TestCase
         $category = Category::factory()->create();
         $user = User::factory()->admin()->create();
 
-        $response = $this->actingAs($user)->put(route('admin.categories.update', $category), [
-            'name' => 'New Name',
-            'parent_id' => 2
+        $response = $this->actingAs($user)
+            ->put(route('admin.categories.update', $category), [
+                'name' => 'New Name',
+                'parent_id' => 2
         ]);
 
         $response->assertRedirect(route('admin.categories.index'));
@@ -99,8 +104,11 @@ class CategoryTest extends TestCase
 
         $this->assertDatabaseCount('categories', 1);
 
-        $response = $this->actingAs($user)->delete(route('admin.categories.delete', $category));
+        $response = $this->actingAs($user)
+            ->delete(route('admin.categories.delete', $category));
+
         $response->assertSessionHas('success', 'Category Deleted Successfully.');
+
         $this->assertDatabaseCount('categories', 0);
         //$this->assertEquals(0, Category::count());
     }
@@ -112,9 +120,13 @@ class CategoryTest extends TestCase
 
         $rootCategory = Category::factory()->create();
         $categoryParent = Category::factory()->create();
-        $childCategory = Category::factory()->create(['name' => 'child category', 'parent_id' => 2]);
+        $childCategory = Category::factory()->create([
+            'name' => 'child category', 
+            'parent_id' => 2
+        ]);
 
-        $this->actingAs($user)->delete(route('admin.categories.delete', $categoryParent));
+        $this->actingAs($user)
+            ->delete(route('admin.categories.delete', $categoryParent));
 
         $this->assertDatabaseHas('categories', [
             'name' => 'child category',

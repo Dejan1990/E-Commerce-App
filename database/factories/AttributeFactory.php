@@ -14,7 +14,11 @@ class AttributeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'code' => $this->faker->word(),
+            'name' => $this->faker->word(),
+            'frontend_type' => 'select',
+            'is_required' => true,
+            'is_filterable' => true
         ];
     }
 }

@@ -18,7 +18,9 @@ class SettingsRoutesTest extends TestCase
         $response->assertRedirect('/');
 
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->get('/admin/settings');
+        $response = $this->actingAs($user)
+            ->get('/admin/settings');
+
         $response->assertStatus(302);
         $response->assertRedirect('/');
     }
@@ -26,7 +28,9 @@ class SettingsRoutesTest extends TestCase
     public function testAdminCanViewSettingPage()
     {
         $user = User::factory()->admin()->create();
-        $response = $this->actingAs($user)->get('/admin/settings');
+        $response = $this->actingAs($user)
+            ->get('/admin/settings');
+
         $response->assertOk();
     }
 
@@ -37,7 +41,9 @@ class SettingsRoutesTest extends TestCase
         $response->assertRedirect('/');
 
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->post(route('admin.settings.update'), []);
+        $response = $this->actingAs($user)
+            ->post(route('admin.settings.update'), []);
+
         $response->assertStatus(302);
         $response->assertRedirect('/');
         $response->assertSessionMissing('success');
@@ -46,7 +52,9 @@ class SettingsRoutesTest extends TestCase
     public function testAdminCanUpdateSetting()
     {
         $user = User::factory()->admin()->create();
-        $response = $this->actingAs($user)->post(route('admin.settings.update'), []);
+        $response = $this->actingAs($user)
+            ->post(route('admin.settings.update'), []);
+            
         $response->assertStatus(302);
         $response->assertSessionHas('success', 'Settings updated successfully.');
     }

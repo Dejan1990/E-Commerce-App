@@ -19,7 +19,7 @@ class CreateAttributesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->enum('frontend_type', ['select', 'radio', 'text', 'text_area']);
-            $table->boolean('is_filterable')->default(0);
+            $table->boolean('is_filterable')->default(false);
             $table->boolean('is_required')->defaule(false);
             $table->timestamps();
         });
