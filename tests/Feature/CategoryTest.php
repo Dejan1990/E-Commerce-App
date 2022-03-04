@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
@@ -35,12 +37,14 @@ class CategoryTest extends TestCase
     public function creating_a_category_works_properly()
     {
         $user = User::factory()->admin()->create();
+        $file = UploadedFile::fake()->image('category.jpg');
 
         $response = $this->actingAs($user)
             ->post(route('admin.categories.store'), [
                 'name' => 'First Category',
                 'parent_id' => 1,
-                'description' => 'First description'
+                'description' => 'First description',
+                'image' => $file
         ]);
 
         $response->assertRedirect(route('admin.categories.index'));
@@ -50,7 +54,8 @@ class CategoryTest extends TestCase
         $this->assertDatabaseHas('categories', [
             'name' => 'First Category',
             'parent_id' => 1,
-            'description' => 'First description'
+            'description' => 'First description',
+            'image' => 'category/'.$file->hashName()
         ]);
     }
 
@@ -79,11 +84,13 @@ class CategoryTest extends TestCase
     {
         $category = Category::factory()->create();
         $user = User::factory()->admin()->create();
+        $file = UploadedFile::fake()->image('category.jpg');
 
         $response = $this->actingAs($user)
             ->put(route('admin.categories.update', $category), [
                 'name' => 'New Name',
-                'parent_id' => 2
+                'parent_id' => 2,
+                'image' => $file
         ]);
 
         $response->assertRedirect(route('admin.categories.index'));
@@ -92,7 +99,8 @@ class CategoryTest extends TestCase
 
         $this->assertDatabaseHas('categories', [
             'name' => 'New Name',
-            'parent_id' => 2
+            'parent_id' => 2,
+            'image' => 'category/'.$file->hashName()
         ]);
     }
 

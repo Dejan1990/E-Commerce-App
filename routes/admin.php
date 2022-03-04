@@ -34,9 +34,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
     });
 
     Route::controller(AttributeValueController::class)->group(function () {
-        Route::get('/attributes/{attribute}/get-values', 'getValues');
-        Route::post('/attributes/{attribute}/add-value', 'addValue');
-        Route::put('/attributes/{attribute}/update-value', 'updateValue');
-        Route::post('/attributes/{attribute}/delete-value', 'deleteValue');
+        Route::get('/attributes/{attribute}/get-values', 'getValues')->name('admin.attributesValues.index');
+        Route::post('/attributes/{attribute}/add-value', 'addValue')->name('admin.attributesValues.store');
+        Route::put('/attributes/{attribute}/update-value', 'updateValue')->name('admin.attributesValues.update');
+        Route::post('/attributes/{attribute}/delete-value', 'deleteValue')->name('admin.attributesValues.delete');
     });
 });

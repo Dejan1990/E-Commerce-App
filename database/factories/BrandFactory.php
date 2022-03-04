@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Attribute;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AttributeValueFactory extends Factory
+class BrandFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,8 +14,7 @@ class AttributeValueFactory extends Factory
     public function definition()
     {
         return [
-            'attribute_id' => Attribute::factory(),
-            'value' => $this->faker->word()
+            'name' => $this->faker->word()
         ];
     }
 }

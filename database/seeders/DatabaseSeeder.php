@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             CategorySeeder::class,
             AttributeSeeder::class,
-            AttributeValueSeeder::class
+            AttributeValueSeeder::class,
+            BrandSeeder::class
         ]);
     }
 }
