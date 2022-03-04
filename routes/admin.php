@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AttributeValueController;
+use App\Http\Controllers\Admin\BrandController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
 
@@ -38,5 +39,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         Route::post('/attributes/{attribute}/add-value', 'addValue')->name('admin.attributesValues.store');
         Route::put('/attributes/{attribute}/update-value', 'updateValue')->name('admin.attributesValues.update');
         Route::post('/attributes/{attribute}/delete-value', 'deleteValue')->name('admin.attributesValues.delete');
+    });
+
+    Route::controller(BrandController::class)->group(function () {
+        Route::get('/brands', 'index')->name('admin.brands.index');
+        Route::get('/brands/create', 'create')->name('admin.brands.create');
+        Route::post('/brands/create', 'store')->name('admin.brands.store');
+        Route::get('/brands/{brand:slug}/edit', 'edit')->name('admin.brands.edit');
+        Route::put('/brands/{brand}/update', 'update')->name('admin.brands.update');
+        Route::delete('/brands/{brand}/delete', 'destroy')->name('admin.brands.delete');
     });
 });

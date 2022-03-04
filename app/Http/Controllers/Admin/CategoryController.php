@@ -58,6 +58,7 @@ class CategoryController extends BaseController
 
     public function update(CategoryStoreRequest $request, Category $category)
     {
+        $oldImage = $category->image;
         $validated = $request->validated();
 
         if ($request->file('image')) {
@@ -68,6 +69,10 @@ class CategoryController extends BaseController
             'featured' => $request->filled('featured'),
             'menu' => $request->filled('menu')
         ]);
+
+        if ($oldImage != $category->image) {
+            Storage::delete($oldImage);
+        }
 
         return redirect()->route('admin.categories.index')
             ->with('success', 'Category Updated Successfully.');
