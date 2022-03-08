@@ -22,4 +22,9 @@ class Brand extends Model
     {
         return asset('storage/'.$this->image);
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

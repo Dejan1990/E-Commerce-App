@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class AttributeFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,11 +14,7 @@ class AttributeFactory extends Factory
     public function definition()
     {
         return [
-            'code' => $this->faker->unique()->word(),
-            'name' => $this->faker->word(),
-            'frontend_type' => 'select',
-            'is_required' => true,
-            'is_filterable' => true
+            //
         ];
     }
 }
