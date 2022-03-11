@@ -21,6 +21,6 @@ class CategorySeeder extends Seeder
             'menu' => false
         ]);
 
-        Category::factory(10)->create();
+        Category::factory(5)->create();
     }
 }

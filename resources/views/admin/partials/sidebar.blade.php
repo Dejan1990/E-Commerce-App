@@ -57,8 +57,14 @@
         </li>
         <li>
             <a class="app-menu__item {{ Route::currentRouteName() == 'admin.brands.index' ? 'active' : '' }}" href="{{ route('admin.brands.index') }}">
-                <i class="app-menu__icon fa fa-th"></i>
+                <i class="app-menu__icon fa fa-briefcase"></i>
                 <span class="app-menu__label">Brands</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.products.index' ? 'active' : '' }}" href="{{ route('admin.products.index') }}">
+                <i class="app-menu__icon fa fa-folder"></i>
+                <span class="app-menu__label">Products</span>
             </a>
         </li>
     </ul>

@@ -15,7 +15,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->words(rand(1, 2), true),
-            'description' => $this->faker->realText(rand(90, 100))
+            'description' => $this->faker->text(rand(90, 110)),
         ];
     }
 }
