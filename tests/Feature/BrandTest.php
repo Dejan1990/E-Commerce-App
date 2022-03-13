@@ -28,7 +28,10 @@ class BrandTest extends TestCase
         Brand::factory()->create(['name' => 'Brand 1']);
         Brand::factory()->create(['name' => 'Brand 2']);
 
-        $response = $this->actingAs($user)->get(route('admin.brands.index'));
+        $response = $this->actingAs($user)
+            ->get(route('admin.brands.index'));
+
+        $response->assertDontSee('There is no brand yet!!!', false);
         $response->assertSee('Brand 1', false);
         $response->assertSee('Brand 2', false);
     }
