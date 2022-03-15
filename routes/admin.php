@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\AttributeValueController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductImageController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
 
@@ -58,5 +59,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         Route::get('/products/{product:slug}/edit', 'edit')->name('admin.products.edit');
         Route::put('/products/{product}/update', 'update')->name('admin.products.update');
         Route::delete('/products/{product}/delete', 'destroy')->name('admin.products.delete');
+    });
+
+    Route::controller(ProductImageController::class)->group(function () {
+        Route::post('/products/images/upload', 'upload')->name('admin.products.images.upload');
+        Route::get('/products/images/{id}/delete', 'delete')->name('admin.products.images.delete');
     });
 });

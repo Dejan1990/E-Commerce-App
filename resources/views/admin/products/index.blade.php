@@ -6,7 +6,7 @@
   <div class="app-title">
         <div>
             <h1>
-                <i class="app-menu__icon fa fa-folder"></i> {{ $pageTitle }}
+                <i class="app-menu__icon fa fa-shopping-bag"></i> {{ $pageTitle }}
             </h1>
             <p>{{ $subTitle }}</p>
         </div>
