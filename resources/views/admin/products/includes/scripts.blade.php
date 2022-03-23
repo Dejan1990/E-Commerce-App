@@ -1,6 +1,7 @@
 <script type="text/javascript" src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script>
     Dropzone.autoDiscover = false;
 

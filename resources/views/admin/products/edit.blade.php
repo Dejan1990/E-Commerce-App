@@ -24,6 +24,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#images" data-toggle="tab">Images</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#attributes" data-toggle="tab">Attributes</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -34,7 +37,12 @@
                         @include('admin.products.includes._form')
                     </div>
                 </div>
-                @include('admin.products.includes.images')
+                <div class="tab-pane" id="images">
+                    @include('admin.products.includes._images')
+                </div>
+                <div class="tab-pane" id="attributes">
+                    <product-attributes :productid="{{ $product->id }}"></product-attributes>
+                </div>
             </div>
         </div>
     </div>
